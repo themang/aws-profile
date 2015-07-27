@@ -2,7 +2,7 @@
 
 var program = require('commander')
 var profile = require('..')
-var prompt = require('sync-prompt').prompt;
+var prompt = require('readline-sync').question;
 
 
 program
