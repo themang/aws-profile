@@ -2,7 +2,7 @@
   "name": "@themang/profile",
   "description": "Create and set aws profiles.",
   "repository": "git://github.com/themang/aws-profile.git",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "main": "lib/index.js",
   "bin": {
