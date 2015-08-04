@@ -30,6 +30,12 @@ program
   .description('Get a profile')
   .action(function(name) {
     var config = profile.get(name)
+
+    if (!config.accessKeyId) {
+      console.log('No profile with that name.')
+      return
+    }
+
     console.log('AWS Access Key ID:', config.accessKeyId)
     console.log('AWS Secret Access Key:', config.secretAccessKey)
     console.log('Region:', config.region)
