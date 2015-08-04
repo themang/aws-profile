@@ -9,15 +9,13 @@ program
   .command('add <name>')
   .description('Add a profile')
   .action(function(name) {
-    var credentials = {
-      aws_access_key_id: prompt('AWS Access Key ID [None]:'),
-      aws_secret_access_key: prompt('AWS Secret Access Key [None]:')
-    }
     var config = {
+      accessKeyId: prompt('AWS Access Key ID [None]:'),
+      secretAccessKey: prompt('AWS Secret Access Key [None]:'),
       region: prompt('Default region name [None]:'),
       output: prompt('Default output format [None]:')
     }
-    profile.add(name, credentials, config)
+    profile.add(name, config)
   })
 
 program
@@ -25,6 +23,17 @@ program
   .description('Delete a profile')
   .action(function(name) {
     profile.delete(name)
+  })
+
+program
+  .command('get <name>')
+  .description('Get a profile')
+  .action(function(name) {
+    var config = profile.get(name)
+    console.log('AWS Access Key ID:', config.accessKeyId)
+    console.log('AWS Secret Access Key:', config.secretAccessKey)
+    console.log('Region:', config.region)
+    console.log('Output:', config.output)
   })
 
 program.parse(process.argv)
