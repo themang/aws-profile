@@ -22,6 +22,9 @@ describe('aws-profile', function () {
     var config2 = awsProfile.get(profile)
     assert.deepEqual(config2, config)
 
+    awsProfile.load(profile)
+    assert(aws.config.region === config.region)
+
     awsProfile.delete(profile)
     var cred = new aws.SharedIniFileCredentials({profile: profile})
     assert(cred.accessKeyId === undefined)
