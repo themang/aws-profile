@@ -13,9 +13,15 @@ program
       accessKeyId: prompt('AWS Access Key ID [None]:'),
       secretAccessKey: prompt('AWS Secret Access Key [None]:'),
       region: prompt('Default region name [None]:'),
-      output: prompt('Default output format [None]:')
     }
     profile.add(name, config)
+  })
+
+program
+  .command('login <name>')
+  .description('Login to a profile')
+  .action(function(name) {
+    profile.login(name)
   })
 
 program
@@ -26,7 +32,7 @@ program
   })
 
 program
-  .command('get <name>')
+  .command('get [name]')
   .description('Get a profile')
   .action(function(name) {
     var config = profile.get(name)
@@ -39,7 +45,6 @@ program
     console.log('AWS Access Key ID:', config.accessKeyId)
     console.log('AWS Secret Access Key:', config.secretAccessKey)
     console.log('Region:', config.region)
-    console.log('Output:', config.output)
   })
 
 program.parse(process.argv)
